@@ -1,0 +1,13 @@
+mq_config:
+  # nats server:
+  server_url: nats://localhost:4222
+
+cache_config:
+  # redis addr
+  address: localhost:6379
+  expiration_duration: 1h
+
+service_config:
+  status_change_subj: AlarmStatusChanged
+  send_digest_subj: SendAlarmDigest
+  alarm_digest_subj: AlarmDigest

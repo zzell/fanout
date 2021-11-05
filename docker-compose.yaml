@@ -1,0 +1,22 @@
+version: "3"
+services:
+  nats:
+    image: nats
+    ports:
+      - 4222:4222
+    networks:
+      - local
+    command: "--debug --cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222"
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    environment:
+     - REDIS_REPLICATION_MODE=master
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge

@@ -1,0 +1,94 @@
+service:
+  golangci-lint-version: 1.23.x
+
+run:
+  skip-dirs-use-default: true
+
+output:
+  format: tab
+
+linters-settings:
+  depguard:
+    list-type: blacklist
+  dupl:
+    threshold: 100
+  exhaustive:
+    default-signifies-exhaustive: false
+  goimports:
+    local-prefixes: github.com/golangci/golangci-lint
+  golint:
+    min-confidence: 0.6
+  govet:
+    check-shadowing: true
+  maligned:
+    suggest-new: true
+  misspell:
+    locale: US
+
+linters:
+  disable-all: true
+  enable:
+    - bodyclose
+    - deadcode
+    - depguard
+    - dogsled
+    - errcheck
+    - gochecknoinits
+    - gocritic
+    - gofmt
+    - goimports
+    - golint
+    - goprintffuncname
+    - gosimple
+    - govet
+    - ineffassign
+    - interfacer
+    - misspell
+    - nolintlint
+    - rowserrcheck
+    - scopelint
+    - staticcheck
+    - structcheck
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - varcheck
+    - whitespace
+    - asciicheck
+    - gocognit
+    - maligned
+    - nestif
+    - prealloc
+
+    # - testpackage
+    # - goconst
+    # - gomnd
+    # - gosec
+    # - dupl
+    # - funlen
+    # - gocyclo
+    # - nakedret
+    # - stylecheck
+    # - exhaustive
+    # - gochecknoglobals
+    # - godot
+    # - godox
+    # - goerr113
+    # - lll
+    # - wsl
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gocyclo
+        - errcheck
+        - dupl
+        - gosec
+
+    - linters: # https://github.com/go-critic/go-critic/issues/926
+        - gocritic
+      text: "unnecessaryDefer:"
+
+  exclude-use-default: false
